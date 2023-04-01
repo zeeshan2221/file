@@ -3,7 +3,7 @@ import streamlit as st
 import openai
 from io import BytesIO
 from pydub import AudioSegment
-import streamlit.secrets as st.secrets
+import streamlit.secrets as st
 
 
 # Set up OpenAI API
