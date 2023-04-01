@@ -36,7 +36,7 @@ def generate_audio(text):
 
     # Send a request to the text-to-speech API
     headers = {
-        "api-key": api_key,
+        "api-key": IsZh7u8eHrjHgALqn0XS3M4vvouN331F,
         "voice": voice,
         "speed": speed
     }
@@ -66,5 +66,5 @@ def main():
         st.write(presentation)
 
 
-if __name__ == "__main1__":
-    main1()
+if __name__ == "__main__":
+    main()
