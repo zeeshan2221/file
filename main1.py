@@ -66,5 +66,5 @@ def main():
         st.write(presentation)
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main1__":
+    main1()
