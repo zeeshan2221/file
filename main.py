@@ -35,17 +35,17 @@ def generate_audio(text):
     speed = "0"
 
     # Send a request to the text-to-speech API
-    headers = {
-        "api-key": IsZh7u8eHrjHgALqn0XS3M4vvouN331F,
-        "voice": voice,
-        "speed": speed
-    }
+   headers = {
+    "api-key": "IsZh7u8eHrjHgALqn0XS3M4vvouN331F",
+    "voice": voice,
+    "speed": speed
+}
     data = {"text": text}
     response = requests.post(api_url, headers=headers, json=data)
 
     # Convert the response audio to a playable format
     audio_bytes = BytesIO(response.content)
-    audio_segment = AudioSegment.from_file(audio_bytes, format="mp3")
+    audio_segment = AudioSegment.from_file("presentation_audio.mp3", format="mp3")
     audio_segment.export("presentation_audio.mp3", format="mp3")
 
     return audio_bytes
