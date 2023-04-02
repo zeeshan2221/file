@@ -50,6 +50,7 @@ def generate_audio(text):
 
     return audio_bytes
 
+
 def main():
     st.title("AICademy")
 
@@ -61,9 +62,11 @@ def main():
         audio = generate_audio(presentation)
 
         # Display the presentation or video and the generated audio
-        st.audio(audio)
+        st.audio(audio.read(), format='audio/mp3')
         st.write(presentation)
 
 
 if __name__ == "__main__":
+    st.set_page_config(page_title="AICademy", page_icon=":books:")
     main()
+ debug it
