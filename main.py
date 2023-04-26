@@ -29,26 +29,34 @@ def generate_presentation(topic):
 
 def generate_audio(text):
     # Set up text-to-speech API parameters
-    api_key = st.secrets["tts_api_key"]
-    api_url = "https://api.fpt.ai/hmi/tts/v5"
-    voice = "banmai"
-    speed = "0"
-
-    # Send a request to the text-to-speech API
+    url = "https://text-to-speech-neural-google.p.rapidapi.com/generateAudioFiles"
+    audio_format = "ogg"
+    voice_name = "Wavenet-B"
+    engine = "google"
+    language_code = "en-IN"
     headers = {
-        "api-key": api_key,
-        "voice": voice,
-        "speed": speed
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "8146e2a7a9mshe43236ad48a66a4p11efb1jsn84fd4294f4f1",
+        "X-RapidAPI-Host": "text-to-speech-neural-google.p.rapidapi.com"
     }
-    data = {"text": text}
-    response = requests.post(api_url, headers=headers, json=data)
+    data = {
+        "audioFormat": audio_format,
+        "paragraphChunks": [text],
+        "voiceParams": {
+            "name": voice_name,
+            "engine": engine,
+            "languageCode": language_code
+        }
+    }
+    response = requests.post(url, json=data, headers=headers)
 
     # Convert the response audio to a playable format
     audio_bytes = BytesIO(response.content)
-    audio_segment = AudioSegment.from_file(audio_bytes, format="mp3")
-    audio_segment.export("presentation_audio.mp3", format="mp3")
+    audio_segment = AudioSegment.from_file(audio_bytes, format=audio_format)
+    audio_segment.export("presentation_audio." + audio_format, format=audio_format)
 
     return audio_bytes
+
 
 
 def main():
@@ -69,4 +77,3 @@ def main():
 if __name__ == "__main__":
     st.set_page_config(page_title="AICademy", page_icon=":books:")
     main()
- debug it
